@@ -5,7 +5,9 @@
 class Collecter {
 private:
     std::vector<Movie> movies;
+    void Save();
 public:
+    Collecter();
     void AddMovie(const Movie& movie);
     void ListMovies();
     void ClearMovies();
