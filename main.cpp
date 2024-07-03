@@ -2,7 +2,7 @@
 #include "movie.h"
 #include "collecter.h"
 
-enum CollecterCommand {ADD, LIST, CLEAR, REMOVE, QUIT, UNKNOWN};
+enum CollecterCommand {ADD, LIST, CONTAINS, CLEAR, REMOVE, QUIT, UNKNOWN};
 CollecterCommand ParseCommand(const std::string& command)
 {
     if (command == "add")
@@ -20,6 +20,10 @@ CollecterCommand ParseCommand(const std::string& command)
     else if (command == "remove")
     {
         return REMOVE;
+    }
+    else if (command == "contains")
+    {
+        return CONTAINS;
     }
     else if (command == "quit" || command == "exit")
     {
@@ -72,6 +76,21 @@ int main()
             case CLEAR:
             {
                 collecter.ClearMovies();
+                break;
+            }
+            case CONTAINS:
+            {
+                std::string title;
+                std::cout << "Enter a title:" << std::endl;
+                std::getline(std::cin, title);
+                if (collecter.ContainsMovie(title))
+                {
+                    std::cout << "Contains movie: " << title << std::endl;
+                }
+                else
+                {
+                    std::cout << "Does not contain movie: " << title << std::endl;
+                }
                 break;
             }
             case REMOVE:

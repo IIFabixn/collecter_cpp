@@ -3,6 +3,7 @@
 #include <fstream> 
 #include "movie.h"
 #include "collecter.h"
+
 Collecter::Collecter() {
     // Load movies from file
     std::ifstream file("movies.txt");
@@ -28,6 +29,17 @@ Collecter::Collecter() {
 void Collecter::AddMovie(const Movie& movie) {
     movies.push_back(movie);
     Save();
+}
+
+bool Collecter::ContainsMovie(const std::string& title) {
+    for (const Movie& movie : movies)
+    {
+        if (movie.m_title == title)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 void Collecter::ListMovies() {
